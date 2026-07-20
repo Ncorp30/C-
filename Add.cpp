@@ -11,6 +11,10 @@ int main() {
 
     cout << "Enter two numbers: ";
     cin >> x >> y;
+    if (cin.fail()) {
+        cout << "Invalid input" << endl;
+        return 1;
+    }
 
     int result = addNumbers(x, y);
 
