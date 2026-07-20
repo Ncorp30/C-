@@ -5,16 +5,18 @@
 class Solution {
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        const int INF = numeric_limits<int>::max();
+
         for (int i = 0; i < matrix.size(); ++i) {
             for (int j = 0; j < matrix[i].size(); ++j) {
                 if (!matrix[i][j]) {
                     continue;
                 }
-                matrix[i][j] = numeric_limits<int>::max();
-                if (i > 0 && matrix[i - 1][j] != numeric_limits<int>::max()) {
+                matrix[i][j] = INF;
+                if (i > 0 && matrix[i - 1][j] != INF) {
                     matrix[i][j] = min(matrix[i][j], matrix[i - 1][j] + 1);
                 }
-                if (j > 0 && matrix[i][j - 1] != numeric_limits<int>::max()) {
+                if (j > 0 && matrix[i][j - 1] != INF) {
                     matrix[i][j] = min(matrix[i][j], matrix[i][j - 1] + 1);
                 }
             }
@@ -25,10 +27,10 @@ public:
                 if (!matrix[i][j]) {
                     continue;
                 }
-                if (i < matrix.size() - 1 && matrix[i + 1][j] != numeric_limits<int>::max()) {
+                if (i < matrix.size() - 1 && matrix[i + 1][j] != INF) {
                     matrix[i][j] = min(matrix[i][j], matrix[i + 1][j] + 1);
                 }
-                if (j < matrix[i].size() - 1 && matrix[i][j + 1] != numeric_limits<int>::max()) {
+                if (j < matrix[i].size() - 1 && matrix[i][j + 1] != INF) {
                     matrix[i][j] = min(matrix[i][j], matrix[i][j + 1] + 1);
                 }
             }
@@ -106,7 +108,7 @@ public:
             for (const auto& dir : dirs) {
                 auto i = cell.first + dir.first;
                 auto j = cell.second + dir.second;
-                if (!(0 <= i && i < matrix.size() && 0 <= j && j < matrix[0].size() && 
+                if (!(0 <= i && i < matrix.size() && 0 <= j && j < matrix[0].size() &&
                       matrix[i][j] > matrix[cell.first][cell.second] + 1)) {
                         continue;
                 }
