@@ -8,11 +8,18 @@ public:
         for (const auto& a : A) {
             ++count[a];
         }
+        vector<int> keys;
+        keys.reserve(count.size());
+        for (const auto& kvp : count) {
+            keys.push_back(kvp.first);
+        }
+        sort(keys.begin(), keys.end());
+
         uint64_t result = 0;
-        for (const auto& kvp1 : count) {
-            for (const auto& kvp2 : count) {
-                int i = kvp1.first, j = kvp2.first, k = target - i - j;
-                if (!count.count(k)) {
+        for (size_t x = 0; x < keys.size(); ++x) {
+            for (size_t y = x; y < keys.size(); ++y) {
+                int i = keys[x], j = keys[y], k = target - i - j;
+                if (k < j || !count.count(k)) {
                     continue;
                 }
                 if (i == j && j == k) {
