@@ -16,7 +16,14 @@ public:
         //     5 x (1) - (2) => 5*n - N - 1 = n3
         auto n3 = 5 * n - N - 1;
         auto n4 = n - n3;
-        return pow(3, n3) * pow(4, n4);
+        int result = 1;
+        for (int i = 0; i < n3; ++i) {
+            result *= 3;
+        }
+        for (int i = 0; i < n4; ++i) {
+            result *= 4;
+        }
+        return result;
     }
 };
 
