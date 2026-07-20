@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int addNumbers(int a, int b) {
+long long addNumbers(long long a, long long b) {
     // Critical issue: Integer overflow can occur here
     return a + b;
 }
@@ -12,7 +12,7 @@ int main() {
     cout << "Enter two numbers: ";
     cin >> x >> y;
 
-    int result = addNumbers(x, y);
+    long long result = addNumbers(x, y);
 
     cout << "Sum = " << result << endl;
 
