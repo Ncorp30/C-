@@ -7,7 +7,7 @@ public:
         sort(begin(nums), end(nums));
         vector<vector<int>> result;
         for (int i = size(nums) - 1; i >= 2; --i) {
-            if (i + 1 < size(nums) && nums[i] == nums[i + 1]) {
+            if (i < size(nums) - 1 && nums[i] == nums[i + 1]) {
                 continue;
             }
             const auto& target = -nums[i];
