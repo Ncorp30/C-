@@ -24,6 +24,6 @@ public:
                 }
             }
         }
-        return result % static_cast<int>(1e9 + 7);
+        return static_cast<int>(result % static_cast<uint64_t>(1e9 + 7));
     }
 };
