@@ -5,16 +5,17 @@
 class Solution {
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        const int INF = numeric_limits<int>::max() / 2;
         for (int i = 0; i < matrix.size(); ++i) {
             for (int j = 0; j < matrix[i].size(); ++j) {
                 if (!matrix[i][j]) {
                     continue;
                 }
-                matrix[i][j] = numeric_limits<int>::max();
-                if (i > 0 && matrix[i - 1][j] != numeric_limits<int>::max()) {
+                matrix[i][j] = INF;
+                if (i > 0 && matrix[i - 1][j] != INF) {
                     matrix[i][j] = min(matrix[i][j], matrix[i - 1][j] + 1);
                 }
-                if (j > 0 && matrix[i][j - 1] != numeric_limits<int>::max()) {
+                if (j > 0 && matrix[i][j - 1] != INF) {
                     matrix[i][j] = min(matrix[i][j], matrix[i][j - 1] + 1);
                 }
             }
@@ -25,10 +26,10 @@ public:
                 if (!matrix[i][j]) {
                     continue;
                 }
-                if (i < matrix.size() - 1 && matrix[i + 1][j] != numeric_limits<int>::max()) {
+                if (i < matrix.size() - 1 && matrix[i + 1][j] != INF) {
                     matrix[i][j] = min(matrix[i][j], matrix[i + 1][j] + 1);
                 }
-                if (j < matrix[i].size() - 1 && matrix[i][j + 1] != numeric_limits<int>::max()) {
+                if (j < matrix[i].size() - 1 && matrix[i][j + 1] != INF) {
                     matrix[i][j] = min(matrix[i][j], matrix[i][j + 1] + 1);
                 }
             }
@@ -44,19 +45,20 @@ public:
 class Solution2 {
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        const int INF = numeric_limits<int>::max() / 2;
         vector<vector<int> > dp(matrix.size(),
                                 vector<int>(matrix[0].size(),
-                                            numeric_limits<int>::max()));
+                                            INF));
 
         for (int i = 0; i < matrix.size(); ++i) {
             for (int j = 0; j < matrix[i].size(); ++j) {
                 if (matrix[i][j] == 0) {
                     dp[i][j] = 0;
                 } else {
-                    if (i > 0 && dp[i - 1][j] != numeric_limits<int>::max()) {
+                    if (i > 0 && dp[i - 1][j] != INF) {
                         dp[i][j] = min(dp[i][j], dp[i - 1][j] + 1);
                     }
-                    if (j > 0 && dp[i][j - 1] != numeric_limits<int>::max()) {
+                    if (j > 0 && dp[i][j - 1] != INF) {
                         dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1);
                     }
                 }
@@ -68,10 +70,10 @@ public:
                 if (matrix[i][j] == 0) {
                     dp[i][j] = 0;
                 } else {
-                    if (i < matrix.size() - 1 && dp[i + 1][j] != numeric_limits<int>::max()) {
+                    if (i < matrix.size() - 1 && dp[i + 1][j] != INF) {
                         dp[i][j] = min(dp[i][j], dp[i + 1][j] + 1);
                     }
-                    if (j < matrix[i].size() - 1 && dp[i][j + 1] != numeric_limits<int>::max()) {
+                    if (j < matrix[i].size() - 1 && dp[i][j + 1] != INF) {
                         dp[i][j] = min(dp[i][j], dp[i][j + 1] + 1);
                     }
                 }
