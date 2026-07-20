@@ -12,7 +12,7 @@ public:
         for (const auto& kvp1 : count) {
             for (const auto& kvp2 : count) {
                 int i = kvp1.first, j = kvp2.first, k = target - i - j;
-                if (!count.count(k)) {
+                if (!count.count(k) || i > j || j > k) {
                     continue;
                 }
                 if (i == j && j == k) {
