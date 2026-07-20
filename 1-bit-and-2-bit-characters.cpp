@@ -4,11 +4,10 @@
 class Solution {
 public:
     bool isOneBitCharacter(vector<int>& bits) {
-        auto parity = 0;
-        for (int i = static_cast<int>(bits.size()) - 2;
-             i >= 0 && bits[i]; --i) {
-            parity ^= bits[i];
+        int i = 0;
+        while (i < static_cast<int>(bits.size()) - 1) {
+            i += bits[i] + 1;
         }
-        return parity == 0;
+        return i == static_cast<int>(bits.size()) - 1;
     }
 };
